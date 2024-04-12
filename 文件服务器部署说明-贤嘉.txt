@@ -1,0 +1,68 @@
+部署图片服务器。本服务器，上传文件使用的是django工程。前端工程是直接通过url访问，所以使用的是apache服务。Apache更加稳定。所以首先部署自己开发的django工程，然后再配置apache。详细如下。
+1.系统可以选择windows或Ubuntu，下面是windows为例。
+2.安装python。
+3.安装虚拟环境。例如：e:\server-d\venv
+命令：cd e:\server-d\
+命令：python -m venv venv
+4.安装django。进入虚拟环境，进入venv路径。
+运行命令：py -m pip install Django
+
+5.下载代码。myfileserver放在\Scripts目录下。
+启动环境，类似：D:\server-d\venv\Scripts\myfileserver>python manage.py  runserver 0.0.0.0:8000
+下载安装包：
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple   django-cors-headers
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple   djangorestframework
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple    PyMuPDF
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple    pyvips
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple     pillow
+
+
+启动提示：
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+测试链接： http://192.168.21.136:8000/admin
+显示登录框即可，不用登录，因为没有用户数据。
+
+5.安装vips包。解压vips-dev-w64-all-8.14.4.zip到本地， （例如：D:\vips-dev-8.14）。
+修改代码：pdftoimage.py。第五行为:
+vipshome = r'E:\\server-d\\vips-dev-8.14\\bin'
+
+6.启动测试，上传文件。
+测试上传pdf文件：http://192.168.21.136:8000/index/
+界面参数不修改，任意选择一个文件，查看是否能够生成瓦片图片。
+如果生成了（E:\server-d\venv\Scripts\myfileserver\files\images\gl\955\gl_955_1_1_files\0\0_0.jpg）即完成。
+
+7.安装apache（Apache 2.4.55 x64）。安装任意磁盘根目录。略。
+确保通过80端口访问即可。
+ 
+8.配置apache文件访问路径。修改配置httpd.conf。注意下面的是用“/”。
+DocumentRoot "D:/server-d/venv/Scripts/myfileserver"
+<Directory "D:/server-d/venv/Scripts/myfileserver">
+
+跨域访问，设置：httpd.conf
+1）解开这一行注释：LoadModule headers_module modules/mod_headers.so
+2）
+找到这个配置
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+增加这个配置
+<Directory />
+Header set Access-Control-Allow-Origin *  
+Header set Access-Control-Allow-Credentials true
+Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, authorization" 
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, HEAD, PUT, DELETE, PATCH" 
+</Directory>
+
+9.192.168.21.136启动命令：
+运行 cmd
+
+cd E:\server-d\venv\Scripts
+activate
+
+cd E:\redmine-4\apache2\htdocs
+python manage.py  runserver 0.0.0.0:8000

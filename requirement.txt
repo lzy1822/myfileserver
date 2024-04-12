@@ -1,0 +1,33 @@
+6  sudo gedit /etc/apt/sources.list 
+7  sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+8  sudo gedit /etc/apt/sources.list 
+9  sudo apt-get update
+10  python3
+11  which python3
+12  sudo apt install python3-pip
+13  sudo apt install python3-venv
+
+15  python3 -m pip install Django
+16  sudo gedit /etc/profile
+17  sudo gedit /etc/environment
+23  django-admin startproject myfileserver
+43  cd myfileserver/
+45  python3 ./manage.py runserver
+46  python3 -m venv env
+47  source ./venv/bin/activate
+51  pip install django
+
+pip install djangorestframework
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple djangorestframework
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple PyMuPDF
+
+sudo apt-get install libvips
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyvips
+
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  django-cors-headers
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pillow
+ 
+

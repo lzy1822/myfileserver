@@ -1,0 +1,25 @@
+# 1安装jdk  设置环境变量：
+
+## 1.2查看是否设置成功PS C:\Windows\system32> echo $env:JAVA_HOME
+ C:\Program Files\Java\jdk-22
+# 2设置图像目录
+# Server-side path that will be prefixed to the identifier in the URL.
+# Trailing slash is important!  
+#自己的图片路径
+FilesystemSource.BasicLookupStrategy.path_prefix = /home/myself/images/    
+
+# Server-side path or extension that will be suffixed to the identifier in
+# the URL.
+#如果不用可以注释掉，添加额外的路径或者文件扩展名
+FilesystemSource.BasicLookupStrategy.path_suffix =
+
+# 3启动
+PS E:\Apache24\cantaloupe-5.0.6> java -D"cantaloupe.config=E:/Apache24/cantaloupe-5.0.6/cantaloupe.properties" -Xmx2g -jar "E:/Apache24/cantaloupe-5.0.6/cantaloupe-5.0.6.jar"
+
+
+#4测试
+显示图片
+http://localhost:8182/iiif/2/1.jpg/full/full/0/default.jpg
+default.jpg (596×433)
+请求json
+localhost:8182/iiif/2/1.jpg/info.json

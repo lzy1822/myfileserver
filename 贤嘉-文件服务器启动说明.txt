@@ -1,0 +1,16 @@
+核心两个命令：
+D:\server-d\venv\Scripts>activate
+(venv) D:\server-d\venv\Scripts\myfileserver>python manage.py  runserver 0.0.0.0:8000
+启动目录：shell:startup
+把修改批处理文件startfileserver.bat，并把快捷方式放到启动目录中即可。
+
+按下面的顺序操作即可：
+运行 cmd
+
+D:
+
+cd D:\server-d\venv\Scripts
+activate
+
+cd myfileserver
+python manage.py  runserver 0.0.0.0:8000

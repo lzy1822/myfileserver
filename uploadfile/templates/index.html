@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>RPPC Image Zoomer</title>
+  {% load static %}
+
+</head>
+
+<body>
+  <!-- For now, render selections in this sloppy manner -->
+  <a href="#" onclick="renderImage('958_1_1');return false;">Main Street East -</a>
+  <a href="#" onclick="renderImage('958_30_1');return false;">Main Street West -</a>
+  <a href="#" onclick="renderImage('medMain');return false;">Main Street Autos -</a>
+  <a href="#" onclick="renderImage('hotel');return false;">Evert House Hotel -</a>
+  <a href="#" onclick="renderImage('brush');return false;">Medaryville Garage -</a>
+<a href="#" onclick="renderImage('ironBridge');return false;">Rensselaer Iron Bridge -</a>
+  <a href="#" onclick="renderImage('lutheran');return false;">St. Mark's -</a>
+  <br><a href="#" onclick="renderImage('baughmanAuto');return false;">Baughman Auto -</a>
+  <a href="#" onclick="renderImage('baughmanSleigh');return false;">Baughman Sleigh -</a>
+  <a href="#" onclick="renderImage('horse1');return false;">Williams Horse -</a>
+  <a href="#" onclick="renderImage('manMethodist');return false;">Man Methodist Church -</a>
+  <a href="#" onclick="renderImage('treeLean');return false;">Man and Tree -</a>
+  <a href="#" onclick="renderImage('womenSitting');return false;">Women home-</a>
+  <a href="#" onclick="renderImage('pugilists');return false;">Pugilists -</a>
+  <a href="#" onclick="renderImage('river');return false;">Iroquois Rensselaer-</a>
+  <!-- Container for zoomer -->
+  <div id="imgBox" style="width: 1024px; height: 768px;"></div>
+
+  <!-- Get OSD -->
+  <script src="/files/static/js/openseadragon.min.js"></script>
+  <!--<script src="{% static 'js/openseadragon.min.js' %}"></script>-->
+
+  <!-- Click handler to set up and render zoomer -->
+  <script type="text/javascript">
+    function renderImage(selection) {
+
+      // Clear out any previous contents
+      document.getElementById("imgBox").innerHTML = "";
+
+      // Set filename
+      var baseName = "http://127.0.0.1:8000/files/images/zc/958/"+selection + '.dzi';
+
+
+      // Render viewer note nasty "node_modules" parameter!
+      var viewer = OpenSeadragon({
+        id: "imgBox",
+        prefixUrl: "/node_modules/openseadragon/build/openseadragon/images/",
+        tileSources: baseName
+      });
+    }
+  </script>
+</body>
+</html>

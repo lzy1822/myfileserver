@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenSeadragon Image Viewer</title>
+    <script src="openseadragon.min.js"></script>
+    <style>
+      #viewer {
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="viewer"></div>
+    <script>
+      // 创建 OpenSeadragon 图片浏览器实例
+      var viewer = OpenSeadragon({
+        id: "viewer",
+        prefixUrl: "",
+        tileSources: "http://192.168.110.126/files/images/gl/gl_955_1_1.xml"
+      });
+    </script>
+  </body>
+</html>
